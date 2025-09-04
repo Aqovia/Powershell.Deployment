@@ -22,6 +22,7 @@
             }
             else { 
                 Write-Error "Failed at INSTALL PRTG Monitor: $($_.Exception.Message)"
+                throw
             }
         }
     }
@@ -52,6 +53,7 @@ function Uninstall-PrtgMonitors {
                 }
                 else { 
                     Write-Error "Failed at UNINSTALL PRTG Monitor: $($_.Exception.Message)"
+                    throw
                 }
             }
         }
@@ -82,7 +84,8 @@ function Stop-PrtgMonitors {
                     Write-Warning "Warning for PRTG STOP: $($_.Exception.Message)"
                 }
                 else { 
-                    Write-Error "Failed at STOP PRTG Monitor: $($_.Exception.Message) "
+                    Write-Error "Failed at STOP PRTG Monitor: $($_.Exception.Message)"
+                    throw
                 }
             }
         }
@@ -112,6 +115,7 @@ function Start-PrtgMonitors {
             }
             else { 
                 Write-Error "Failed at START PRTG Monitor: $($_.Exception.Message)"
+                throw
             }
         }
     }
