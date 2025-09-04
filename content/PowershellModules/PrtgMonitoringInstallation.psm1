@@ -8,8 +8,9 @@
         $configuration
     )
     
-    $prtgErrorsAsWarnings = [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgErrorsAsWarnings)
-
+    $prtgErrorsAsWarnings = $configuration.configuration.prtgSkipSettings?.prtgSkipSetting?.prtgErrorsAsWarnings ?
+    [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgErrorsAsWarnings) : $false
+    
     foreach ($prtgMonitorConfig in @($configuration.configuration.prtgMonitors.prtgMonitor)) {
         if (!$prtgMonitorConfig) { continue }
         
@@ -38,8 +39,12 @@ function Uninstall-PrtgMonitors {
         $configuration
     )
 
-    $prtgSkipUninstall = [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgSkipUninstall)
-    $prtgErrorsAsWarnings = [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgErrorsAsWarnings)
+    $prtgSkipUninstall = $configuration.configuration.prtgSkipSettings?.prtgSkipSetting?.prtgSkipUninstall ?
+    [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgSkipUninstall) : $false
+
+    $prtgErrorsAsWarnings = $configuration.configuration.prtgSkipSettings?.prtgSkipSetting?.prtgErrorsAsWarnings ?
+    [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgErrorsAsWarnings) : $false
+
     
     if (-not $prtgSkipUninstall) { 
         foreach ($prtgMonitorConfig in @($configuration.configuration.prtgMonitors.prtgMonitor)) {
@@ -70,8 +75,11 @@ function Stop-PrtgMonitors {
         $configuration
     )
     
-    $prtgSkipStop = [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgSkipStop)
-    $prtgErrorsAsWarnings = [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgErrorsAsWarnings)
+    $prtgSkipStop = $configuration.configuration.prtgSkipSettings?.prtgSkipSetting?.prtgSkipStop ?
+    [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgSkipStop) : $false
+
+    $prtgErrorsAsWarnings = $configuration.configuration.prtgSkipSettings?.prtgSkipSetting?.prtgErrorsAsWarnings ?
+    [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgErrorsAsWarnings) : $false
 
     if (-not $prtgSkipStop) { 
         foreach ($prtgMonitorConfig in @($configuration.configuration.prtgMonitors.prtgMonitor)) {
@@ -102,7 +110,8 @@ function Start-PrtgMonitors {
         $configuration
     )
     
-    $prtgErrorsAsWarnings = [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgErrorsAsWarnings)
+    $prtgErrorsAsWarnings = $configuration.configuration.prtgSkipSettings?.prtgSkipSetting?.prtgErrorsAsWarnings ?
+    [bool]::Parse($configuration.configuration.prtgSkipSettings.prtgSkipSetting.prtgErrorsAsWarnings) : $false
 
     foreach ($prtgMonitorConfig in @($configuration.configuration.prtgMonitors.prtgMonitor)) {
         if (!$prtgMonitorConfig) { continue }
