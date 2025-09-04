@@ -102,7 +102,7 @@ This means that any custom configuration created is not overwritten, but you are
 ## PRTG
 * Add PRTG monitoring end point
 
-## PRTG Monitoring Options
+### PRTG Monitoring Options
 
 These settings give you control over how PRTG monitors are handled during deployment. You can choose to keep monitors running instead of stopping or uninstalling them, and decide whether problems with PRTG should block the deployment or just show a warning. By default, prtg monitors will be stopped and uninstalled, and problems are treated as errors.
 
