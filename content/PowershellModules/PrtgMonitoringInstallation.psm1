@@ -8,7 +8,7 @@
         $configuration
     )
     
-    $prtgErrorsAsWarnings = Get-PrtgSettingBools -configuration $configuration -attrName "prtgErrorsAsWarnings"
+    $prtgErrorsAsWarnings = Get-PrtgSkipSettingBool -configuration $configuration -attrName "prtgErrorsAsWarnings"
   
     foreach ($prtgMonitorConfig in @($configuration.configuration.prtgMonitors.prtgMonitor)) {
         if (!$prtgMonitorConfig) { continue }
@@ -38,8 +38,8 @@ function Uninstall-PrtgMonitors {
         $configuration
     )
 
-    $prtgSkipUninstall = Get-PrtgSettingBools -configuration $configuration -attrName "prtgSkipUninstall"
-    $prtgErrorsAsWarnings = Get-PrtgSettingBools -configuration $configuration -attrName "prtgErrorsAsWarnings"
+    $prtgSkipUninstall = Get-PrtgSkipSettingBool -configuration $configuration -attrName "prtgSkipUninstall"
+    $prtgErrorsAsWarnings = Get-PrtgSkipSettingBool -configuration $configuration -attrName "prtgErrorsAsWarnings"
 
     
     if (-not $prtgSkipUninstall) { 
@@ -71,8 +71,8 @@ function Stop-PrtgMonitors {
         $configuration
     )
     
-    $prtgSkipStop = Get-PrtgSettingBools -configuration $configuration -attrName "prtgSkipStop"
-    $prtgErrorsAsWarnings = Get-PrtgSettingBools -configuration $configuration -attrName "prtgErrorsAsWarnings"
+    $prtgSkipStop = Get-PrtgSkipSettingBool -configuration $configuration -attrName "prtgSkipStop"
+    $prtgErrorsAsWarnings = Get-PrtgSkipSettingBool -configuration $configuration -attrName "prtgErrorsAsWarnings"
 
     if (-not $prtgSkipStop) { 
         foreach ($prtgMonitorConfig in @($configuration.configuration.prtgMonitors.prtgMonitor)) {
@@ -103,7 +103,7 @@ function Start-PrtgMonitors {
         $configuration
     )
     
-    $prtgErrorsAsWarnings = Get-PrtgSettingBools -configuration $configuration -attrName "prtgErrorsAsWarnings" 
+    $prtgErrorsAsWarnings = Get-PrtgSkipSettingBool -configuration $configuration -attrName "prtgErrorsAsWarnings" 
 
     foreach ($prtgMonitorConfig in @($configuration.configuration.prtgMonitors.prtgMonitor)) {
         if (!$prtgMonitorConfig) { continue }
@@ -1703,7 +1703,7 @@ function Invoke-WebRequestWithoutException {
 }
 
 
-function Get-PrtgSettingBools {
+function Get-PrtgSkipSettingBool {
     param(
         [Parameter(Mandatory = $true)] [System.Xml.XmlDocument] $configuration,
         [Parameter(Mandatory = $true)] [string] $attrName
